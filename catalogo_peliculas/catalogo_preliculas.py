@@ -1,6 +1,6 @@
 # Importar el módulo tkinter con el alias tk
 import tkinter as tk
-from client.gui__app import Frame
+from client.gui__app import Frame, barra_menu
 
 # Definir la función principal del programa
 def main():
@@ -10,6 +10,7 @@ def main():
     root.iconbitmap('img/palomitas-de-maiz.png') #cambiar icono del programa
     root.resizable(1,0) #permite modificaciones de la ventana
     # Ejecutar el ciclo principal del gestor de eventos de la ventana
+    barra_menu(root)
 
     app = Frame(root=root)
 
