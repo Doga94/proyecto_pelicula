@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 
 def barra_menu(root):
     barra_menu = tk.Menu(root)
@@ -36,6 +37,7 @@ class Frame(tk.Frame):
 
         self.campos_pelicula()
         self.desabilitar_campos()
+        self.tabla_peliculas()
 
     def campos_pelicula(self):
         #label de cada campo
@@ -71,17 +73,17 @@ class Frame(tk.Frame):
         self.boton_nuevo = tk.Button(self, text="Nuevo", command=self.habilitar_campos)
         self.boton_nuevo.config(width=20, font=('Arial', 11, 'bold'),
                                                 fg= '#FFFFFF', bg= '#1387F8', cursor= "hand2", activebackground='#0053FC')
-        self.boton_nuevo.grid(row= 4, column= 0, padx=10, pady=10)
+        self.boton_nuevo.grid(row= 3, column= 0, padx=10, pady=10)
 
         self.boton_guardar = tk.Button(self, text="Guardar", command=self.guardar_datos)
         self.boton_guardar.config(width=20, font=('Arial', 11, 'bold'),
                                                 fg= '#FFFFFF', bg= '#01C1BC', cursor= "hand2", activebackground='#67DEA1')
-        self.boton_guardar.grid(row= 4, column= 1, padx=10, pady=10)
+        self.boton_guardar.grid(row= 3, column= 1, padx=10, pady=10)
 
         self.boton_cancelar = tk.Button(self, text="Cancelar", command=self.desabilitar_campos)
         self.boton_cancelar.config(width=20, font=('Arial', 11, 'bold'),
                                                 fg= '#FFFFFF', bg= '#AB2967', cursor= "hand2", activebackground='#EE7055')
-        self.boton_cancelar.grid(row= 4, column= 2, padx=10, pady=10)
+        self.boton_cancelar.grid(row= 3, column= 2, padx=10, pady=10)
 
     def habilitar_campos(self):
         self.entry_nombre.config(state='normal')
@@ -105,3 +107,27 @@ class Frame(tk.Frame):
 
     def guardar_datos(self):
         self.desabilitar_campos()
+
+    def tabla_peliculas(self):
+        self.tabla = ttk.Treeview(self,
+        columns= ('Nombre', 'Duración', 'Genero'))
+        self.tabla.grid(row=4, column=0, columnspan= 4)
+
+        self.tabla.heading('#0', text='ID')
+        self.tabla.heading('#1', text='NOMBRE')
+        self.tabla.heading('#2', text='DURACION')
+        self.tabla.heading('#3', text='GENERO')
+
+        self.tabla.insert('',0, text='1', values=('Señor de los anillos', '2.15', 'Ficción'))
+
+        #Botone Editar
+        self.boton_editar = tk.Button(self, text="Editar")
+        self.boton_editar.config(width=20, font=('Arial', 11, 'bold'),
+                                                fg= '#FFFFFF', bg= '#1387F8', cursor= "hand2", activebackground='#0053FC')
+        self.boton_editar.grid(row= 5, column= 0, padx=10, pady=10)
+
+        #Boton Eliminar
+        self.boton_eliminar = tk.Button(self, text="Eliminar")
+        self.boton_eliminar.config(width=20, font=('Arial', 11, 'bold'),
+                                                fg= '#FFFFFF', bg= '#AB2967', cursor= "hand2", activebackground='#EE7055')
+        self.boton_eliminar.grid(row= 5, column= 1, padx=10, pady=10)
